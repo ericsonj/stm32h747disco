@@ -1,0 +1,163 @@
+from pybuild.Module import ModuleHandle, GCC_CompilerOpts
+from pybuild import git 
+
+git.addSubmodule('https://git.xiph.org/opus.git', 'Middlewares/Third_Party/opus')
+
+def getSrcs(mh: ModuleHandle):
+    srcs = [
+        # OPUS SRCS
+        'Third_Party/opus/src/opus.c',
+        'Third_Party/opus/src/opus_decoder.c',
+        'Third_Party/opus/src/opus_encoder.c',
+        'Third_Party/opus/src/opus_multistream.c',
+        'Third_Party/opus/src/opus_multistream_encoder.c',
+        'Third_Party/opus/src/opus_multistream_decoder.c',
+        'Third_Party/opus/src/repacketizer.c',
+        'Third_Party/opus/src/opus_projection_encoder.c',
+        'Third_Party/opus/src/opus_projection_decoder.c',
+        'Third_Party/opus/src/mapping_matrix.c',
+        'Third_Party/opus/src/analysis.c',
+        'Third_Party/opus/src/mlp.c',
+        'Third_Party/opus/src/mlp_data.c',
+        
+        # OPUS CELT
+        
+        'Third_Party/opus/celt/bands.c',
+        'Third_Party/opus/celt/celt.c',
+        'Third_Party/opus/celt/celt_encoder.c',
+        'Third_Party/opus/celt/celt_decoder.c',
+        'Third_Party/opus/celt/cwrs.c',
+        'Third_Party/opus/celt/entcode.c',
+        'Third_Party/opus/celt/entdec.c',
+        'Third_Party/opus/celt/entenc.c',
+        'Third_Party/opus/celt/kiss_fft.c',
+        'Third_Party/opus/celt/laplace.c',
+        'Third_Party/opus/celt/mathops.c',
+        'Third_Party/opus/celt/mdct.c',
+        'Third_Party/opus/celt/modes.c',
+        'Third_Party/opus/celt/pitch.c',
+        'Third_Party/opus/celt/celt_lpc.c',
+        'Third_Party/opus/celt/quant_bands.c',
+        'Third_Party/opus/celt/rate.c',
+        'Third_Party/opus/celt/vq.c',
+        'Third_Party/opus/celt/arm/armcpu.c',
+        'Third_Party/opus/celt/arm/arm_celt_map.c',
+        
+        # SILK
+        'Third_Party/opus/silk/CNG.c',
+        'Third_Party/opus/silk/code_signs.c',
+        'Third_Party/opus/silk/init_decoder.c',
+        'Third_Party/opus/silk/decode_core.c',
+        'Third_Party/opus/silk/decode_frame.c',
+        'Third_Party/opus/silk/decode_parameters.c',
+        'Third_Party/opus/silk/decode_indices.c',
+        'Third_Party/opus/silk/decode_pulses.c',
+        'Third_Party/opus/silk/decoder_set_fs.c',
+        'Third_Party/opus/silk/dec_API.c',
+        'Third_Party/opus/silk/enc_API.c',
+        'Third_Party/opus/silk/encode_indices.c',
+        'Third_Party/opus/silk/encode_pulses.c',
+        'Third_Party/opus/silk/gain_quant.c',
+        'Third_Party/opus/silk/interpolate.c',
+        'Third_Party/opus/silk/LP_variable_cutoff.c',
+        'Third_Party/opus/silk/NLSF_decode.c',
+        'Third_Party/opus/silk/NSQ.c',
+        'Third_Party/opus/silk/NSQ_del_dec.c',
+        'Third_Party/opus/silk/PLC.c',
+        'Third_Party/opus/silk/shell_coder.c',
+        'Third_Party/opus/silk/tables_gain.c',
+        'Third_Party/opus/silk/tables_LTP.c',
+        'Third_Party/opus/silk/tables_NLSF_CB_NB_MB.c',
+        'Third_Party/opus/silk/tables_NLSF_CB_WB.c',
+        'Third_Party/opus/silk/tables_other.c',
+        'Third_Party/opus/silk/tables_pitch_lag.c',
+        'Third_Party/opus/silk/tables_pulses_per_block.c',
+        'Third_Party/opus/silk/VAD.c',
+        'Third_Party/opus/silk/control_audio_bandwidth.c',
+        'Third_Party/opus/silk/quant_LTP_gains.c',
+        'Third_Party/opus/silk/VQ_WMat_EC.c',
+        'Third_Party/opus/silk/HP_variable_cutoff.c',
+        'Third_Party/opus/silk/NLSF_encode.c',
+        'Third_Party/opus/silk/NLSF_VQ.c',
+        'Third_Party/opus/silk/NLSF_unpack.c',
+        'Third_Party/opus/silk/NLSF_del_dec_quant.c',
+        'Third_Party/opus/silk/process_NLSFs.c',
+        'Third_Party/opus/silk/stereo_LR_to_MS.c',
+        'Third_Party/opus/silk/stereo_MS_to_LR.c',
+        'Third_Party/opus/silk/check_control_input.c',
+        'Third_Party/opus/silk/control_SNR.c',
+        'Third_Party/opus/silk/init_encoder.c',
+        'Third_Party/opus/silk/control_codec.c',
+        'Third_Party/opus/silk/A2NLSF.c',
+        'Third_Party/opus/silk/ana_filt_bank_1.c',
+        'Third_Party/opus/silk/biquad_alt.c',
+        'Third_Party/opus/silk/bwexpander_32.c',
+        'Third_Party/opus/silk/bwexpander.c',
+        'Third_Party/opus/silk/debug.c',
+        'Third_Party/opus/silk/decode_pitch.c',
+        'Third_Party/opus/silk/inner_prod_aligned.c',
+        'Third_Party/opus/silk/lin2log.c',
+        'Third_Party/opus/silk/log2lin.c',
+        'Third_Party/opus/silk/LPC_analysis_filter.c',
+        'Third_Party/opus/silk/LPC_inv_pred_gain.c',
+        'Third_Party/opus/silk/table_LSF_cos.c',
+        'Third_Party/opus/silk/NLSF2A.c',
+        'Third_Party/opus/silk/NLSF_stabilize.c',
+        'Third_Party/opus/silk/NLSF_VQ_weights_laroia.c',
+        'Third_Party/opus/silk/pitch_est_tables.c',
+        'Third_Party/opus/silk/resampler.c',
+        'Third_Party/opus/silk/resampler_down2_3.c',
+        'Third_Party/opus/silk/resampler_down2.c',
+        'Third_Party/opus/silk/resampler_private_AR2.c',
+        'Third_Party/opus/silk/resampler_private_down_FIR.c',
+        'Third_Party/opus/silk/resampler_private_IIR_FIR.c',
+        'Third_Party/opus/silk/resampler_private_up2_HQ.c',
+        'Third_Party/opus/silk/resampler_rom.c',
+        'Third_Party/opus/silk/sigm_Q15.c',
+        'Third_Party/opus/silk/sort.c',
+        'Third_Party/opus/silk/sum_sqr_shift.c',
+        'Third_Party/opus/silk/stereo_decode_pred.c',
+        'Third_Party/opus/silk/stereo_encode_pred.c',
+        'Third_Party/opus/silk/stereo_find_predictor.c',
+        'Third_Party/opus/silk/stereo_quant_pred.c',
+        'Third_Party/opus/silk/LPC_fit.c'          
+    ]
+    return mh.getSrcsByPath(srcs)
+
+def getIncs(mh: ModuleHandle):
+    incs = [
+        'Third_Party/opus/include'
+    ]
+    return mh.getSrcsByPath(incs)
+    
+    
+def getCompilerOpts(mh: ModuleHandle):
+    opts = GCC_CompilerOpts(mh.getGeneralCompilerOpts())
+    opts.setOptimizationOpts(['-Ofast'])
+    opts.setControlCOpts(['-std=c99'])
+    opts.setControlCOpts([
+        '-IMiddlewares/Third_Party/opus/silk',
+        '-IMiddlewares/Third_Party/opus/silk/float',
+        '-IMiddlewares/Third_Party/opus/src',
+        '-IMiddlewares/Third_Party/opus/celt'
+        ])
+    return opts
+
+
+## Need config.h
+
+#X #ifndef CONFIG_H
+#X #define CONFIG_H
+#X
+#X #define USE_ALLOCA    1
+#X
+#X /* Comment out the next line for floating-point code */
+#X /*#define FIXED_POINT 1 */
+#X
+#X #define FLOAT_APPROX  1
+#X
+#X #define OPUS_BUILD    1
+#X
+#X /* #include "version.h" */
+#X
+#X #endif /* CONFIG_H */
