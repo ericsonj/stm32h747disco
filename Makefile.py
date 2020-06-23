@@ -90,7 +90,10 @@ def getCompilerOpts():
         'BRANCH_NAME':              git.getBranchName(),
         'CODE_VERSION':             git.getDescribe(),
         'HAVE_CONFIG_H':            None,
-        'HAVE_ALLOCA_H':            None
+        'HAVE_ALLOCA_H':            None,
+        'CONFIG_YAFFS_DIRECT':      None,
+        'CONFIG_YAFFS_DEFINES_TYPES': None,
+        '__rtems__':                None
     }
 
     return {
