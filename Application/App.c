@@ -27,6 +27,9 @@
 #include <stdint.h>
 #include "SDFatFs.h"
 #include "AudioPlayer.h"
+#include "yaffsfs.h"
+#include "yaffs_trace.h"
+
 
 #ifndef VERSION
 #define VERSION "X.X.X"
@@ -39,6 +42,7 @@ static void APP_task(const void *arg);
 static void APP_InternetTest(const void *arg);
 static void Netif_Config(void);
 
+unsigned int yaffs_trace_mask;
 
 void APP_init() {
 	osThreadDef(App_Thread, APP_task, osPriorityNormal, 0, configMINIMAL_STACK_SIZE * 5);
@@ -63,7 +67,7 @@ void APP_task(const void *arg)
 
 	SDFatFs_Init();
 
-	osThreadDef(InternetTest_Thread, APP_InternetTest, osPriorityNormal, 0, configMINIMAL_STACK_SIZE * 5);
+	osThreadDef(InternetTest_Thread, APP_InternetTest, osPriorityNormal, 0, configMINIMAL_STACK_SIZE * 8);
 	osThreadCreate(osThread(InternetTest_Thread), NULL);
 
 	for (;;)
@@ -149,9 +153,20 @@ void APP_InternetTest(const void *arg)
 	udp_bind(ptel_pcb, IP_ADDR_ANY, 5000);
 	udp_recv(ptel_pcb, udp_echo_recv, NULL);
 
-//	AudioPlayer_Init();
+	yaffs_trace_mask = YAFFS_TRACE_BAD_BLOCKS;
+	yaffs_start_up();
 
-	while (1)
+        if (yaffs_mount("nand") == 0) {
+          int f = yaffs_open("nand/file0.txt", O_RDONLY, S_IREAD);
+          if (f != -1) {
+          } else {
+            f = yaffs_open("nand/file0.txt", O_CREAT | O_RDWR,
+                           (S_IREAD | S_IWRITE));
+            yaffs_close(f);
+          }
+        }
+
+        while (1)
 	{
 //		if (gnetif.flags & NETIF_FLAG_LINK_UP){
 //			vTaskDelay(1000);

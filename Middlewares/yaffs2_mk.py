@@ -10,6 +10,7 @@ def getSrcs(m: ModuleHandle):
         'yaffs_bitmap.c',
         'yaffs_checkptrw.c',
         'yaffs_ecc.c',
+        'yaffs_endian.c',
         'yaffs_error.c',
         'yaffs_guts.c',
         'yaffs_hweight.c',

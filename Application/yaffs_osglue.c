@@ -29,11 +29,11 @@ void yaffsfs_SetError(int err) {
 }
 
 void *yaffsfs_malloc(size_t size) {
-	return pvPortMalloc(xSize);
+	return pvPortMalloc(size);
 }
 
 void yaffsfs_free(void *ptr) {
-	vPortFree(pv);
+	vPortFree(ptr);
 }
 
 int yaffsfs_CheckMemRegion(const void *addr, size_t size, int write_request) {
@@ -43,7 +43,18 @@ int yaffsfs_CheckMemRegion(const void *addr, size_t size, int write_request) {
 }
 
 void yaffsfs_OSInitialisation(void) {
+}
 
+static void *bg_gc_func(void *dummy)
+{
+
+}
+
+void yaffs_bug_fn(const char *file_name, int line_no)
+{
+	//printf("yaffs bug detected %s:%d\n",
+//		file_name, line_no);
+//	assert(0);
 }
 
 

@@ -43,7 +43,8 @@ def getSrcs(mh: ModuleHandle):
             '/PROJECTS/ARM/STM32CubeH7/Drivers/BSP/Components/otm8009a/otm8009a_reg.c',
             '/PROJECTS/ARM/STM32CubeH7/Drivers/BSP/Components/wm8994/wm8994.c',
             '/PROJECTS/ARM/STM32CubeH7/Drivers/BSP/Components/wm8994/wm8994_reg.c',
-            '/PROJECTS/ARM/STM32CubeH7/Drivers/BSP/Components/is42s32800j/is42s32800j.c'
+            '/PROJECTS/ARM/STM32CubeH7/Drivers/BSP/Components/is42s32800j/is42s32800j.c',
+            '/PROJECTS/ARM/STM32CubeH7/Drivers/BSP/Components/mt25tl01g/mt25tl01g.c'
         ]
         
         return bsp_srcs + hal_srcs + comp_srcs + ll_srcs

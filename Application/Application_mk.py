@@ -7,6 +7,8 @@ def getSrcs(m: ModuleHandle):
 #       'AudioPlayer.c',
         'SDFatFs.c',
         'AudioDrive.c',
+        'yaffs_nandflash.c',
+        'yaffs_osglue.c',
     ]
     return m.getFileByNames(srcs)
 
