@@ -310,7 +310,7 @@ void UTIL_LCD_TRACE_UpdateDisplay (void)
   if((LcdTrace_Ctx.CacheBufferYptrBottom  < (YWINDOW_SIZE -1)) &&
      (LcdTrace_Ctx.CacheBufferYptrBottom  >= LcdTrace_Ctx.CacheBufferYptrTop))
   {
-    GUI_SetTextColor(LCD_CacheBuffer[cnt + LcdTrace_Ctx.CacheBufferYptrBottom].Color);
+    GUI_SetTextColor(GUI_COLOR_WHITE);
     GUI_DisplayStringAtLine ((YWINDOW_MIN + LcdTrace_Ctx.CacheBufferYptrBottom),
                            (uint8_t *)(LCD_CacheBuffer[cnt + LcdTrace_Ctx.CacheBufferYptrBottom].Line));
   }
@@ -332,7 +332,7 @@ void UTIL_LCD_TRACE_UpdateDisplay (void)
     {
       index = (cnt + ptr )% LCD_CACHE_DEPTH ;
 
-      GUI_SetTextColor(LCD_CacheBuffer[index].Color);
+      GUI_SetTextColor(GUI_COLOR_WHITE);
       GUI_DisplayStringAtLine ((cnt + YWINDOW_MIN),
                              (uint8_t *)(LCD_CacheBuffer[index].Line));
     }

@@ -93,7 +93,8 @@ def getCompilerOpts():
         'HAVE_ALLOCA_H':            None,
         'CONFIG_YAFFS_DIRECT':      None,
         'CONFIG_YAFFS_DEFINES_TYPES': None,
-        '__rtems__':                None
+        '__rtems__':                None,
+        'LOFF_T_32_BIT':            None,
     }
 
     return {

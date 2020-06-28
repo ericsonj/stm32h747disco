@@ -9,6 +9,7 @@ def getSrcs(m: ModuleHandle):
         'AudioDrive.c',
         'yaffs_nandflash.c',
         'yaffs_osglue.c',
+        'QSPI_Flash.c',
     ]
     return m.getFileByNames(srcs)
 

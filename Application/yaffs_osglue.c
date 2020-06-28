@@ -45,10 +45,9 @@ int yaffsfs_CheckMemRegion(const void *addr, size_t size, int write_request) {
 void yaffsfs_OSInitialisation(void) {
 }
 
-static void *bg_gc_func(void *dummy)
-{
-
-}
+//static void *bg_gc_func(void *dummy) {
+//	return NULL;
+//}
 
 void yaffs_bug_fn(const char *file_name, int line_no)
 {
