@@ -139,7 +139,7 @@ void SDFatFs_task(const void *arg) {
 				audiohandle.volumen = volume;
 				audiohandle.frameSize = AUDIO_SIZE;
 				audiohandle.fillBuffCallback = audioCallBack;
-				LCDLog_RLog(4, "Play %s ...", audioFiles[audioFileIdx].name);
+//				LCDLog_RLog(4, "Play %s ...", audioFiles[audioFileIdx].name);
 				AudioDrive_play(audiohandle);
 			}
 		default:

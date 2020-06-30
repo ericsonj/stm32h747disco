@@ -44,6 +44,7 @@ INCS  =
 COMPILER_FLAGS =
 SLIBS_OBJECTS = 
 SLIBS_NAMES = 
+SRC_DIRS =
 
 include vars.mk
 include srcs.mk
@@ -71,7 +72,7 @@ all: $(TARGETS)
 
 clean: clean_targets
 	@echo 'CLEAN'
-	rm -rf $(PROJECT_OUT)
+	rm -f $(addsuffix /*, $(addprefix $(PROJECT_OUT)/,$(SRC_DIRS)))
 
 cleanlibs:
 	rm -rf $(SLIBS_OBJECTS:%.a=%.cksum)	

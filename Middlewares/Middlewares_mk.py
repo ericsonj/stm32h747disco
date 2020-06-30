@@ -2,7 +2,7 @@ from pymakelib.Module import ModuleHandle, StaticLibrary
 import hashlib
 
 def init(mh: ModuleHandle):
-    staticLib = StaticLibrary(name='middlewares', outputDir='Middlewares')
+    staticLib = StaticLibrary(name='middlewares', outputDir='Release/STM32F7xx')
     if mh.getGoal() == 'all':
         try:
             linked = hashlib.md5(open('Port/STM32H7xx/linker/STM32H747XIHx_FLASH_CM7_ETH.ld', 'rb').read()).hexdigest()

@@ -123,7 +123,7 @@ void udp_echo_recv(void* arg, struct udp_pcb* pcb, struct pbuf* p,
     if (p != NULL) {
         char* msg = (char*)pvPortMalloc(p->len);
         memcpy(msg, p->payload, p->len);
-        LCDLog_RLog(1, "RECV OK %s %d", CODE_VERSION, count++);
+        printf("RECV OK %s %d", VERSION, count++);
 #if IS_BETA
         const char beta[] = " BETA \n";
         LCD_UsrLog(beta);
